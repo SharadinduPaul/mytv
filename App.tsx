@@ -1,31 +1,22 @@
-import React, {type PropsWithChildren} from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {HomeScreen} from './screens/HomeScreen';
 
 const App = () => {
+  const Stack = createNativeStackNavigator();
+
   return (
-    <SafeAreaView>
-      <Text>Hii this is the assingment</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          options={{title: 'My TV Shows App'}}
+          component={HomeScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
