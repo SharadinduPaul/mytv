@@ -19,15 +19,14 @@ export const ShowCard = ({data, navigation}: ShowCardProps) => {
   const HandleCardPress = (id: string) => {
     navigation.navigate('Details', {id: id, data: data});
   };
-  const show = data?._embedded?.show;
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => HandleCardPress(show?.id)}
+      onPress={() => HandleCardPress(data?.id)}
       activeOpacity={0.8}>
       <View style={styles.cardView}>
-        <Image source={{uri: show?.image?.original}} style={styles.cardImage} />
-        <Text style={styles.cardText}>{show?.name}</Text>
+        <Image source={{uri: data?.image?.original}} style={styles.cardImage} />
+        <Text style={styles.cardText}>{data?.name}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -42,7 +41,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background_light,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-around',
     flexDirection: 'column',
     width: '100%',
     minHeight: 250,

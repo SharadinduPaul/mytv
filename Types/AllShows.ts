@@ -1,12 +1,16 @@
-export interface AllShows {
+export interface SearchedData {
+  show: AllShows;
+}
+export interface AllData {
   _embedded: {
-    show: {
-      id: string;
-      name: string;
-      image: {
-        medium: string;
-        original: string;
-      };
-    };
+    show: AllShows;
+  };
+}
+export interface AllShows {
+  id: string;
+  name: string;
+  image: {
+    medium: string;
+    original: string;
   };
 }

@@ -35,9 +35,10 @@ const Genres = ({text}: {text: string}) => {
 const handleVisit = (url: string) => {
   Linking.openURL(url);
 };
+
 export const DetailsScreen = ({navigation, route}: DetailsScreenProps) => {
   let id: string = route?.params?.id;
-  const data: ShowDetails = route?.params?.data?._embedded?.show;
+  const data: ShowDetails = route?.params?.data;
 
   useEffect(() => {
     console.log('#### Data in details screen', data);
