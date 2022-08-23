@@ -7,25 +7,17 @@ import {
   View,
   VirtualizedList,
 } from 'react-native';
+import {ShowCard} from '../components/ShowCard';
+import type {AllShows} from '../Types/AllShows';
 
-interface DataType {
-  id: string;
-  name: string;
-  _embedded: {
-    show: {
-      image: {
-        medium: string;
-        original: string;
-      };
-    };
-  };
-}
-export const HomeScreen = () => {
-  const [data, setData] = useState<DataType[]>([]);
+export const HomeScreen = ({navigation}: {navigation: any}) => {
+  const [data, setData] = useState<AllShows[]>([]);
   const getAllShows = async () => {
     const rawData = await fetch('https://api.tvmaze.com/schedule/full');
-    const jsonData: DataType[] = await rawData.json();
-    console.log(jsonData[1]._embedded.show.image.medium);
+    const jsonData: AllShows[] = await rawData.json();
+    console.log(jsonData[1]);
+    console.log(jsonData[1]._embedded.show?.id);
+
     setData(jsonData);
   };
   useEffect(() => {
@@ -35,17 +27,11 @@ export const HomeScreen = () => {
     <SafeAreaView>
       <FlatList
         data={data}
-        keyExtractor={item => item?.id}
-        renderItem={({item}: {item: DataType}) => (
-          <View>
-            <Image
-              source={{uri: item?._embedded?.show?.image?.original}}
-              style={{width: 400, height: 400}}
-            />
-            <Text>{item?.name}</Text>
-          </View>
+        keyExtractor={item => item?._embedded?.show?.id + Math.random()}
+        renderItem={({item}: {item: AllShows}) => (
+          <ShowCard data={item} navigation={navigation} />
         )} //Item component to be placed here
-        initialNumToRender={10}
+        initialNumToRender={50}
         bounces
       />
     </SafeAreaView>
