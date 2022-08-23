@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
   FlatList,
-  Image,
   SafeAreaView,
-  Text,
-  View,
+  StyleSheet,
   VirtualizedList,
 } from 'react-native';
+import {colors} from '../assets/Colors';
 import {ShowCard} from '../components/ShowCard';
 import type {AllShows} from '../Types/AllShows';
 
@@ -24,16 +23,23 @@ export const HomeScreen = ({navigation}: {navigation: any}) => {
     getAllShows();
   }, []);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.background}>
       <FlatList
         data={data}
         keyExtractor={item => item?._embedded?.show?.id + Math.random()}
         renderItem={({item}: {item: AllShows}) => (
           <ShowCard data={item} navigation={navigation} />
-        )} //Item component to be placed here
-        initialNumToRender={50}
-        bounces
+        )}
+        initialNumToRender={10}
+        numColumns={2}
+        removeClippedSubviews
+        maxToRenderPerBatch={5}
       />
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: colors.background_primary,
+  },
+});
