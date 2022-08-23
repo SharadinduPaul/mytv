@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, Image} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import {colors} from '../assets/Colors';
 import {ShowCard} from '../components/ShowCard';
@@ -61,6 +61,12 @@ export const HomeScreen = ({navigation}: {navigation: any}) => {
         onChangeText={text => {
           setSearchText(text);
         }}
+        searchIcon={() => (
+          <Image
+            source={require('../assets/search.png')}
+            style={{height: 20, width: 20}}
+          />
+        )}
       />
       {searchData.length === 0 ? (
         <FlatList
