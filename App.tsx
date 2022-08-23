@@ -12,12 +12,16 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          options={{title: 'My TV Shows App'}}
+          options={{title: '', headerShown: false}}
           component={HomeScreen}
         />
         <Stack.Screen
           name="Details"
-          options={{title: 'Show details'}}
+          options={{
+            title: '',
+            headerTransparent: true,
+            gestureEnabled: true,
+          }}
           component={DetailsScreen}
         />
       </Stack.Navigator>

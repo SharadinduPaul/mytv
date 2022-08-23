@@ -17,7 +17,7 @@ interface ShowCardProps {
 
 export const ShowCard = ({data, navigation}: ShowCardProps) => {
   const HandleCardPress = (id: string) => {
-    navigation.navigate('Details', {id: id});
+    navigation.navigate('Details', {id: id, data: data});
   };
   const show = data?._embedded?.show;
   return (
@@ -35,21 +35,24 @@ export const ShowCard = ({data, navigation}: ShowCardProps) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.background_light,
     width: '46%',
     margin: '2%',
-    borderRadius: 10,
-    overflow: 'hidden',
   },
   cardView: {
+    backgroundColor: colors.background_light,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'column',
     width: '100%',
+    minHeight: 250,
     elevation: 20,
     shadowColor: '#52006A',
     paddingBottom: 10,
+    borderWidth: 1,
+    borderColor: '#4a4a4a',
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   cardImage: {
     width: '100%',
@@ -60,5 +63,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 8,
     width: '100%',
+    paddingHorizontal: 10,
   },
 });
